@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ootrabalhopratico.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+       <HBox spacing="10">
+
+           <VBox spacing="10">
+               <HBox fx:id="menuBox" spacing="10">
+                   <Label prefHeight="24.0" prefWidth="59.0" text="Id do Item: " />
+                   <TextField fx:id="produtoIdTextField" prefHeight="26.0" prefWidth="148.0" promptText="Insira o Id do item...">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+
+                   <Label prefHeight="23.0" prefWidth="70.0" text="Quantidade: " />
+                   <TextField fx:id="quantityTextField" prefHeight="26.0" prefWidth="149.0" promptText="Insira a quantidade...">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+
+                   <Button onAction="#adicionarProduto" text="Adicionar Item">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+               </HBox>
+               <ListView fx:id="produtoListView" prefHeight="400.0" prefWidth="532.0" VBox.vgrow="ALWAYS">
+            <cursor>
+               <Cursor fx:constant="DISAPPEAR" />
+            </cursor></ListView>
+      
+             <HBox spacing="10">
+            <AnchorPane prefHeight="5.0" prefWidth="556.0">
+               <children>
+                      <Button fx:id="finalizarCompraButton" layoutX="447.0" layoutY="-4.0" onAction="#finalizarCompra" text="Finalizar Compra">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                       <Button onAction="#criarCompra" text="Iniciar Nova Compra">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               
+                      <Label fx:id="totalPagamentoLabel" layoutX="293.0" layoutY="3.0" prefHeight="20.0" prefWidth="142.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+               </children>
+            </AnchorPane>
+             </HBox>
+           </VBox>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ScrollPane layoutX="9.0" layoutY="34.0" prefHeight="400.0" prefWidth="446.0">
+              <content>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="444.0">
+                     <children>
+                             <Label layoutY="6.0">--------------------------- Supermercado Preço Bão ---------------------------</Label>
+                             <Label alignment="CENTER" layoutX="14.0" layoutY="29.0">Registradora: R01 | CUPOM FISCAL</Label>
+                     
+                            <VBox fx:id="reciboBox" layoutX="15.0" layoutY="55.0" prefHeight="318.0" prefWidth="415.0" spacing="10">
+                                <Label fx:id="reciboVendaLabel" />
+                                <Label fx:id="trocoVendaLabel" />
+                            </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+       </HBox>
+   <Separator prefWidth="200.0" />
+
+                           <!--       PAGAMENTO -->
+       <VBox fx:id="pagamentoBox" prefHeight="98.0" prefWidth="600.0" spacing="10">
+      <children>
+         <AnchorPane prefHeight="217.0" prefWidth="1027.0">
+            <children>
+                    <Label layoutX="437.0" layoutY="6.0" text="----- PAGAMENTO -----" textAlignment="CENTER">
+                  <font>
+                     <Font name="System Bold" size="13.0" />
+                  </font>
+                  <effect>
+                     <Lighting>
+                        <bumpInput>
+                           <Shadow />
+                        </bumpInput>
+                        <light>
+                           <Light.Distant />
+                        </light>
+                     </Lighting>
+                  </effect></Label>
+                     <Label layoutX="15.0" layoutY="25.0" prefHeight="23.0" prefWidth="130.0" text="Forma de pagamento: " />
+                     <ComboBox fx:id="pagamento" layoutX="152.0" layoutY="26.0" promptText="Selecione a forma de pagamento...">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Dinheiro" />
+                                 <String fx:value="Cheque" />
+                                 <String fx:value="Cartão" />
+                             </FXCollections>
+                         </items>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                     </ComboBox>
+
+         
+                                      <HBox fx:id="fornecidoBox" layoutX="15.0" layoutY="63.0" prefHeight="26.0" prefWidth="333.0" spacing="10">
+                  <children>
+                           <Label prefHeight="26.0" prefWidth="128.0" text="Valor fornecido em R$:">Quantidade fornecida em R$</Label>
+                           <TextField fx:id="amountTextField" prefHeight="26.0" prefWidth="178.0" promptText="Informe o valor pago em R$...">
+                        <cursor>
+                           <Cursor fx:constant="TEXT" />
+                        </cursor></TextField>
+                  </children>
+                    </HBox>
+               <AnchorPane layoutX="7.0" layoutY="166.0" prefHeight="72.0" prefWidth="825.0">
+                  <children>
+               
+                                            <HBox layoutX="14.0" layoutY="-9.0" spacing="10" />
+               
+                                                     <Button fx:id="pagamentoButton" layoutX="430.0" layoutY="14.0" onAction="#fazerPagamento" prefHeight="30.0" prefWidth="130.0" text="Finalizar Pagamento" textAlignment="CENTER">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                     </Button>
+                  </children>
+               </AnchorPane>
+         
+                                            <HBox fx:id="pagamentoCheque" layoutX="357.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="220.0" spacing="10">
+                  <children>
+                           <Label prefHeight="25.0" prefWidth="41.0" text="Banco: " />
+                           <TextField fx:id="bancoTextField" prefHeight="26.0" prefWidth="152.0" promptText="Informe seu banco...">
+                        <cursor>
+                           <Cursor fx:constant="TEXT" />
+                        </cursor></TextField>
+                  </children>
+                    </HBox>
+         
+                                            <HBox fx:id="pagamentoCartao" layoutX="15.0" layoutY="100.0" spacing="10">
+                        <Label prefHeight="25.0" prefWidth="72.0" text="Operadora:" />
+                        <ComboBox fx:id="operadora" promptText="Selecione sua operadora...">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="VISA" />
+                                    <String fx:value="MASTERCARD" />
+                                    <String fx:value="AMERICAN" />
+                                    <String fx:value="DINNERS" />
+                                </FXCollections>
+                            </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </ComboBox>
+         
+                                                      <Label prefHeight="24.0" prefWidth="56.0" text="Parcelas:" />
+                        <TextField fx:id="parcelasTextField" prefHeight="26.0" prefWidth="207.0" promptText="Informe a quantidade de parcelas...">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
+         
+                                                      <Label prefHeight="26.0" prefWidth="40.0" text="Juros:" />
+                        <ComboBox fx:id="calculadora" promptText="Selecione uma Calculadora...">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="JUROS_SIMPLES" />
+                                    <String fx:value="JUROS_COMPOSTOS" />
+                                </FXCollections>
+                            </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </ComboBox>
+                    </HBox>
+            </children>
+         </AnchorPane>
+      </children>
+       </VBox>
+
+   </VBox>
